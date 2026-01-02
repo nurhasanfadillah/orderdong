@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#dc2626" />
     <meta name="description" content="Aplikasi manajemen pesanan sablon mobile-first." />
     
     <!-- iOS PWA Capable -->
@@ -15,7 +15,7 @@
     <title>Quick Orders</title>
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/assets/manifest-DnP97MW9.json" />
+    <link rel="manifest" href="/assets/manifest-DSHrA-7P.json" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,13 +23,14 @@
         theme: {
           extend: {
             colors: {
-              primary: '#6366f1', // Indigo 500
-              'primary-dark': '#4338ca', // Indigo 700
-              secondary: '#64748b', // Slate 500
-              success: '#10b981', // Emerald 500
-              warning: '#f59e0b', // Amber 500
+              primary: '#dc2626', // Red 600
+              'primary-dark': '#7f1d1d', // Red 900
+              secondary: '#9ca3af', // Gray 400
+              success: '#059669', // Emerald 600
+              warning: '#d97706', // Amber 600
               danger: '#ef4444', // Red 500
-              dark: '#0f172a', // Slate 900
+              dark: '#09090b', // Zinc 950
+              surface: '#18181b', // Zinc 900
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
@@ -67,11 +68,11 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #f1f5f9 0%, #e0e7ff 100%);
-        color: #1e293b;
+        background: #09090b; /* Zinc 950 */
+        color: #f4f4f5; /* Zinc 100 */
         -webkit-tap-highlight-color: transparent;
         min-height: 100vh;
-        overscroll-behavior-y: none; /* Prevent pull-to-refresh on mobile web to feel simpler */
+        overscroll-behavior-y: none;
       }
       
       /* Hide scrollbar */
@@ -83,35 +84,35 @@
         scrollbar-width: none;
       }
 
-      /* Glassmorphism Utilities */
+      /* Dark Glassmorphism Utilities */
       .glass {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(24, 24, 27, 0.6);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
       
       .glass-card {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        background: rgba(39, 39, 42, 0.6); /* Zinc 800 with opacity */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
       }
 
       .glass-header {
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(9, 9, 11, 0.85);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       .glass-modal {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(24, 24, 27, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
       }
     </style>
 
@@ -126,16 +127,33 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-4TyADrWm.js"></script>
+  <script type="module" crossorigin src="/assets/index-UBp3Ewzs.js"></script>
 </head>
   <body>
     <div id="root"></div>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js')
+          navigator.serviceWorker.register('/sw.js')
             .then(registration => {
               console.log('SW registered: ', registration);
+              
+              // Check for updates
+              registration.onupdatefound = () => {
+                const installingWorker = registration.installing;
+                if (installingWorker == null) {
+                  return;
+                }
+                installingWorker.onstatechange = () => {
+                  if (installingWorker.state === 'installed') {
+                    if (navigator.serviceWorker.controller) {
+                      console.log('New content is available and will be used when all tabs for this page are closed.');
+                    } else {
+                      console.log('Content is cached for offline use.');
+                    }
+                  }
+                };
+              };
             })
             .catch(registrationError => {
               console.log('SW registration failed: ', registrationError);
