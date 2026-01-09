@@ -9,13 +9,13 @@
     <!-- iOS PWA Capable -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Quick Orders" />
+    <meta name="apple-mobile-web-app-title" content="REMA Orders" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMDAiIHJ5PSIxMDAiIGZpbGw9IiNkYzI2MjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1zaXplPSIyNTYiIGZpbGw9IndoaXRlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5RTzwvdGV4dD48L3N2Zz4=" />
 
-    <title>Quick Orders</title>
+    <title>REMA Orders</title>
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/assets/manifest-jdtAn6gz.json" />
+    <link rel="manifest" href="/assets/manifest-DrlFBZ2H.json" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -66,13 +66,21 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
       body {
         font-family: 'Inter', sans-serif;
         background: #09090b; /* Zinc 950 */
         color: #f4f4f5; /* Zinc 100 */
         -webkit-tap-highlight-color: transparent;
-        min-height: 100vh;
         overscroll-behavior-y: none;
+      }
+      #root {
+        height: 100%;
+        width: 100%;
       }
       
       /* Hide scrollbar */
@@ -82,6 +90,42 @@
       .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
+      }
+
+      /* Desktop Layout Constraints - UPDATED FOR DASHBOARD MODE */
+      /* Removed the max-width: 640px constraint to allow full screen */
+      @media (min-width: 768px) {
+        body {
+          /* Reset centering for dashboard */
+          display: block; 
+          background-color: #0c0c0e;
+          background-image: none; /* Clean background for dashboard */
+        }
+        #root {
+          max-width: 100%; /* Full width */
+          height: 100%;
+          max-height: 100vh;
+          background: #09090b;
+          box-shadow: none;
+          position: relative;
+          overflow: hidden;
+        }
+      }
+
+      /* Custom Scrollbar for Desktop Table */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #18181b; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3f3f46; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #52525b; 
       }
 
       /* Dark Glassmorphism Utilities */
@@ -116,6 +160,7 @@
       }
     </style>
 
+<link rel="stylesheet" href="/index.css">
   <script type="importmap">
 {
   "imports": {
@@ -128,7 +173,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-WRxUfcKE.js"></script>
+  <script type="module" crossorigin src="/assets/index-DdMXZlsP.js"></script>
 </head>
   <body>
     <div id="root"></div>
