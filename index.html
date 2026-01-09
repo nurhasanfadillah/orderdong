@@ -9,13 +9,13 @@
     <!-- iOS PWA Capable -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="REMA Orders" />
+    <meta name="apple-mobile-web-app-title" content="Quick Orders" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMDAiIHJ5PSIxMDAiIGZpbGw9IiNkYzI2MjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1zaXplPSIyNTYiIGZpbGw9IndoaXRlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5RTzwvdGV4dD48L3N2Zz4=" />
 
-    <title>REMA Orders</title>
+    <title>Quick Orders</title>
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/assets/manifest-jdtAn6gz.json" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -66,21 +66,13 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
       body {
         font-family: 'Inter', sans-serif;
         background: #09090b; /* Zinc 950 */
         color: #f4f4f5; /* Zinc 100 */
         -webkit-tap-highlight-color: transparent;
+        min-height: 100vh;
         overscroll-behavior-y: none;
-      }
-      #root {
-        height: 100%;
-        width: 100%;
       }
       
       /* Hide scrollbar */
@@ -90,27 +82,6 @@
       .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
-      }
-
-      /* Desktop Layout Constraints */
-      @media (min-width: 768px) {
-        body {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #0c0c0e; /* Slightly darker background for desktop */
-          background-image: radial-gradient(#18181b 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-        #root {
-          max-width: 640px; /* Wider Mobile/Tablet Width */
-          height: 100%;
-          max-height: 100vh;
-          background: #09090b;
-          box-shadow: 0 0 50px rgba(0,0,0,0.7);
-          position: relative;
-          overflow: hidden;
-        }
       }
 
       /* Dark Glassmorphism Utilities */
@@ -145,7 +116,6 @@
       }
     </style>
 
-<link rel="stylesheet" href="/index.css">
   <script type="importmap">
 {
   "imports": {
@@ -158,7 +128,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-CvnKL0Dk.js"></script>
+  <script type="module" crossorigin src="/assets/index-WRxUfcKE.js"></script>
 </head>
   <body>
     <div id="root"></div>

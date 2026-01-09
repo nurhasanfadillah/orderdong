@@ -1,5 +1,4 @@
-
-const CACHE_NAME = 'quick-orders-v4.2-resilience';
+const CACHE_NAME = 'quick-orders-v4.0-fix-install';
 const DYNAMIC_CACHE = 'quick-orders-dynamic-v1';
 
 const ASSETS_TO_CACHE = [
@@ -43,10 +42,6 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
-
-  // Handle Supabase Storage (Cache First)
   if (url.hostname.includes('supabase.co') && url.pathname.includes('/storage/v1/object/public/')) {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
@@ -57,16 +52,16 @@ self.addEventListener('fetch', (event) => {
             caches.open(DYNAMIC_CACHE).then((cache) => cache.put(event.request, clone));
           }
           return networkResponse;
-        }).catch(() => {
-          // If fetch fails and no cache, return nothing or a generic placeholder
-          return new Response('Network error during image fetch', { status: 408 });
         });
       })
     );
     return;
   }
 
-  // Handle Navigation (Network First, then Cache)
+  if (url.hostname.includes('supabase.co')) {
+    return;
+  }
+
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
@@ -82,17 +77,15 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Default Strategy: Stale-While-Revalidate
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200) {
+        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
         }
         return networkResponse;
       }).catch(() => {
-        // Silently fail if network is down
       });
 
       return cachedResponse || fetchPromise;
