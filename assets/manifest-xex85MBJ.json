@@ -1,8 +1,7 @@
-
 {
   "name": "REMA Orders",
   "short_name": "REMA",
-  "start_url": "/",
+  "start_url": "./",
   "id": "/",
   "scope": "/",
   "display": "standalone",
